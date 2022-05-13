@@ -1,12 +1,10 @@
-import { v4 } from "uuid";
 import Notification from "../notifications/notification";
 
 export default abstract class Entity {
-  private _id: string;
+  protected _id: string;
   public notification: Notification;
 
   constructor() {
-    this._id = v4();
     this.notification = new Notification();
   }
 

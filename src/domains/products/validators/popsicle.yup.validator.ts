@@ -11,17 +11,17 @@ export default class PopsicleYupValidator implements ValidatorInterface<Popsicle
         .shape({
           taste: yup.string().required("Taste is required"),
           category: yup.string().required("Category is required"),
+          product_id: yup.string().required("Product ID is required"),
           cost: yup.number()
-            .required("Cost is required")
             .moreThan(0, "Cost must be greater than zero"),
           price: yup.number()
-            .required("Price is required")
             .moreThan(0, "Price must be greater than zero"),
         })
         .validateSync({
           taste: entity.taste,
           category: entity.category,
           cost: entity.cost,
+          product_id: entity.product_id,
           price: entity.price,
         }, {
           abortEarly: false,
