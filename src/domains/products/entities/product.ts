@@ -1,5 +1,5 @@
 import NotificationError from "@domains/@shared/notifications/notification.error";
-import Entity from "@domains/@shared/entity/entity.abstract"
+import Entity from "@domains/@shared/entity/entity.abstract";
 import ProductInterface from "./product.interface";
 import ProductValidatorFactory from "../factories/product.validator.factory";
 import { v4 } from "uuid";
@@ -10,7 +10,7 @@ interface IProduct {
   product: string;
   cost: number;
   price: number;
-  barcode?: number;
+  barcode?: bigint;
 }
 
 export default class Product extends Entity implements ProductInterface {
@@ -18,7 +18,7 @@ export default class Product extends Entity implements ProductInterface {
   private _product: string;
   private _cost: number;
   private _price: number;
-  private _barcode?: number;
+  private _barcode?: bigint;
 
   constructor({ id, name, product, cost, price, barcode }: IProduct) {
     super();
@@ -52,7 +52,7 @@ export default class Product extends Entity implements ProductInterface {
   get price(): number {
     return this._price;
   }
-  get barcode(): number | null {
+  get barcode(): bigint | null {
     if (this._barcode) {
       return this._barcode;
     }
@@ -67,7 +67,7 @@ export default class Product extends Entity implements ProductInterface {
     this._price = price;
   }
 
-  changeBarcode(barcode: number) {
+  changeBarcode(barcode: bigint) {
     this._barcode = barcode;
   }
 

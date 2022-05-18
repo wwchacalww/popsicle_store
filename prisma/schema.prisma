@@ -5,7 +5,37 @@ generator client {
   provider = "prisma-client-js"
 }
 
+// datasource db {
+//   provider = "postgresql"
+//   url      = env("DATABASE_URL")
+// }
+
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider = "sqlite"
+  url      = "file:./test.db"
+}
+
+model Products {
+  id      String  @id @default(uuid())
+  name    String
+  product String
+  cost    Float
+  price   Float
+  barcode BigInt?
+
+  Popsicles Popsicles[]
+  @@map("products")
+}
+
+model Popsicles {
+  id       String   @id @default(uuid())
+  taste    String
+  category String
+  cost     Float
+  price    Float
+  barcode  BigInt?
+  product  Products @relation(fields: [productsId], references: [id])
+
+  productsId String
+  @@map("popsicles")
 }

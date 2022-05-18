@@ -4,6 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@swc/cli": "^0.1.57",
+    "@swc/core": "^1.2.183",
+    "@swc/jest": "^0.2.21",
     "@types/express": "^4.17.13",
     "@types/jest": "^27.5.1",
     "@types/uuid": "^8.3.4",

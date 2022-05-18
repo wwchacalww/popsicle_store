@@ -74,10 +74,7 @@ export default {
   // maxWorkers: "50%",
 
   // An array of directory names to be searched recursively up from the requiring module's location
-  moduleDirectories: [
-    "node_modules",
-    "src"
-  ],
+  moduleDirectories: ["node_modules", "src"],
 
   // An array of file extensions your modules use
   // moduleFileExtensions: [
@@ -127,7 +124,7 @@ export default {
   // restoreMocks: false,
 
   // The root directory that Jest should scan for tests and modules within
-  // rootDir: undefined,
+  // rootDir: "src",
 
   // A list of paths to directories that Jest should use to search for files in
   // roots: [
@@ -171,7 +168,7 @@ export default {
   // ],
 
   // The regexp pattern or array of patterns that Jest uses to detect test files
-  // testRegex: [],
+  // testRegex: ".*\\..*spec\\.ts$",
 
   // This option allows the use of a custom results processor
   // testResultsProcessor: undefined,
@@ -180,7 +177,9 @@ export default {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  transform: {
+    "^.+\\.ts?$": ["@swc/jest"],
+  },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
