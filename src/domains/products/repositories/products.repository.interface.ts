@@ -5,4 +5,5 @@ export default interface ProductsRepositoryInterface {
   update(product: Product): Promise<void>;
   find(id: string): Promise<Product | null>;
   findAll(): Promise<Product[]>;
+  delete(id: string): Promise<void>;
 }
