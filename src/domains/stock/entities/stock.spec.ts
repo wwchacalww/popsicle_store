@@ -9,15 +9,15 @@ describe("Unit test for Stock", () => {
       category: "Comum",
       cost: 1.23,
       price: 3,
-      barcode: 1802834,
+      barcode: BigInt(1802834),
     });
     const product = new Product({
-      id: popsicle.product.id,
+      id: popsicle.Product.id,
       product: "popsicle",
-      name: popsicle.product.name,
-      cost: popsicle.product.cost,
-      price: popsicle.product.price,
-      barcode: popsicle.product.barcode,
+      name: popsicle.Product.name,
+      cost: popsicle.Product.cost,
+      price: popsicle.Product.price,
+      barcode: popsicle.Product.barcode,
     });
     const stock = new Stock({
       product,
@@ -27,7 +27,7 @@ describe("Unit test for Stock", () => {
     expect(stock.subtotalCost).toEqual(4.92);
     expect(stock.subtotalPrice).toEqual(12);
     expect(stock.show).toStrictEqual({
-      barcode: 1802834,
+      barcode: BigInt(1802834),
       description: "Picolé de Uva - Comum",
       unit_price: new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -47,15 +47,15 @@ describe("Unit test for Stock", () => {
       category: "Comum",
       cost: 1.23,
       price: 3,
-      barcode: 1802834,
+      barcode: BigInt(1802834),
     });
     const product = new Product({
-      id: popsicle.product.id,
+      id: popsicle.Product.id,
       product: "popsicle",
-      name: popsicle.product.name,
-      cost: popsicle.product.cost,
-      price: popsicle.product.price,
-      barcode: popsicle.product.barcode,
+      name: popsicle.Product.name,
+      cost: popsicle.Product.cost,
+      price: popsicle.Product.price,
+      barcode: popsicle.Product.barcode,
     });
     const stock = new Stock({
       product,
@@ -65,7 +65,7 @@ describe("Unit test for Stock", () => {
     expect(stock.subtotalCost).toEqual(-4.92);
     expect(stock.subtotalPrice).toEqual(-12);
     expect(stock.show).toStrictEqual({
-      barcode: 1802834,
+      barcode: BigInt(1802834),
       description: "Picolé de Uva - Comum",
       unit_price: new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -87,12 +87,12 @@ describe("Unit test for Stock", () => {
       price: 3,
     });
     const product = new Product({
-      id: popsicle.product.id,
+      id: popsicle.Product.id,
       product: "popsicle",
-      name: popsicle.product.name,
-      cost: popsicle.product.cost,
-      price: popsicle.product.price,
-      barcode: popsicle.product.barcode,
+      name: popsicle.Product.name,
+      cost: popsicle.Product.cost,
+      price: popsicle.Product.price,
+      barcode: popsicle.Product.barcode,
     });
     const stock = new Stock({
       product,

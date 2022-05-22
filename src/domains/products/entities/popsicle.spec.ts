@@ -15,12 +15,14 @@ describe("Unit test for Popsicle", () => {
       category: "Comum",
       cost: 0.8,
       price: 3.5,
-      product_id: product.id,
+      product,
       barcode: BigInt(12313),
     });
+    product.popsicle = popsicle;
     expect(popsicle.taste).toBe("Manga");
     expect(popsicle.id).toBeDefined();
-    expect(popsicle.product_id).toEqual(product.id);
+    expect(popsicle.Product.id).toEqual(product.id);
+    expect(popsicle).toStrictEqual(product.popsicle);
   });
 
   it("should create a popsicle with barcode empty", () => {
@@ -35,8 +37,9 @@ describe("Unit test for Popsicle", () => {
       category: "Comum",
       cost: 0.8,
       price: 3.5,
-      product_id: product.id,
+      product,
     });
+    product.popsicle = popsicle;
     expect(popsicle.taste).toBe("Manga");
     expect(popsicle.barcode).toBeNull();
   });
@@ -54,9 +57,10 @@ describe("Unit test for Popsicle", () => {
       category: "Comum",
       cost: 0.8,
       price: 3.14,
-      product_id: product.id,
+      product,
       barcode: BigInt(12313),
     });
+    product.popsicle = popsicle;
     expect(popsicle.cost).toBe(0.8);
     expect(popsicle.price).toBe(3.14);
     popsicle.changeBarcode(BigInt(456789));
@@ -69,12 +73,19 @@ describe("Unit test for Popsicle", () => {
 
   it("should throw error when taste is empty", () => {
     expect(() => {
+      const product = new Product({
+        name: "Picolé de Manga Comum",
+        product: "popsicle",
+        cost: 0.8,
+        price: 3.14,
+        barcode: BigInt(12313),
+      });
       new Popsicle({
         taste: "",
         category: "Comum",
         cost: 0.8,
         price: 3.5,
-        product_id: "fake_id",
+        product,
         barcode: BigInt(12313),
       });
     }).toThrowError("popsicle: Taste is required");
@@ -82,12 +93,19 @@ describe("Unit test for Popsicle", () => {
 
   it("should throw error when category is empty", () => {
     expect(() => {
+      const product = new Product({
+        name: "Picolé de Manga Comum",
+        product: "popsicle",
+        cost: 0.8,
+        price: 3.14,
+        barcode: BigInt(12313),
+      });
       new Popsicle({
         taste: "Manga",
         category: "",
         cost: 0.8,
         price: 3.5,
-        product_id: "test",
+        product,
         barcode: BigInt(12313),
       });
     }).toThrowError("popsicle: Category is required");
@@ -95,12 +113,19 @@ describe("Unit test for Popsicle", () => {
 
   it("should throw error when cost is less than 0", () => {
     expect(() => {
+      const product = new Product({
+        name: "Picolé de Manga Comum",
+        product: "popsicle",
+        cost: 0.8,
+        price: 3.14,
+        barcode: BigInt(12313),
+      });
       new Popsicle({
         taste: "Manga",
         category: "Comum",
         cost: -0.8,
         price: 3.5,
-        product_id: "product.id",
+        product,
         barcode: BigInt(12313),
       });
     }).toThrowError("popsicle: Cost must be greater than zero");
@@ -108,42 +133,58 @@ describe("Unit test for Popsicle", () => {
 
   it("should throw error when cost is less than 0", () => {
     expect(() => {
+      const product = new Product({
+        name: "Picolé de Manga Comum",
+        product: "popsicle",
+        cost: 0.8,
+        price: 3.14,
+        barcode: BigInt(12313),
+      });
       new Popsicle({
         taste: "Manga",
         category: "Comum",
         cost: 0.8,
         price: -3.5,
-        product_id: "product.id",
+        product,
         barcode: BigInt(12313),
       });
     }).toThrowError("popsicle: Price must be greater than zero");
   });
 
-  it("should throw error when product ID is empty", () => {
+  it("should throw error when product is empty", () => {
     expect(() => {
       new Popsicle({
         taste: "Manga",
         category: "Comum",
         cost: 0.8,
         price: 3.5,
-        product_id: "",
+        product: {} as Product,
         barcode: BigInt(12313),
       });
-    }).toThrowError("popsicle: Product ID is required");
+    }).toThrowError(
+      "popsicle: product.id is a required field,popsicle: product.name is a required field,popsicle: product.product is a required field"
+    );
   });
 
   it("should throw error when cost is less than 0", () => {
     expect(() => {
+      const product = new Product({
+        name: "Picolé de Manga Comum",
+        product: "popsicle",
+        cost: 0.8,
+        price: 3.14,
+        barcode: BigInt(12313),
+      });
       new Popsicle({
         taste: "",
         category: "",
         cost: -0.8,
         price: -3.5,
-        product_id: "",
+        product,
         barcode: BigInt(12313),
       });
     }).toThrowError(
-      "popsicle: Taste is required,popsicle: Category is required,popsicle: Product ID is required,popsicle: Cost must be greater than zero,popsicle: Price must be greater than zero"
+      "popsicle: Taste is required,popsicle: Category is required,popsicle: Cost must be greater than zero,popsicle: Price must be greater than zero"
     );
   });
 });

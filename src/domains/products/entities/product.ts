@@ -3,6 +3,7 @@ import Entity from "@domains/@shared/entity/entity.abstract";
 import ProductInterface from "./product.interface";
 import ProductValidatorFactory from "../factories/product.validator.factory";
 import { v4 } from "uuid";
+import Popsicle from "./popsicle";
 
 interface IProduct {
   id?: string;
@@ -19,6 +20,7 @@ export default class Product extends Entity implements ProductInterface {
   private _cost: number;
   private _price: number;
   private _barcode?: bigint;
+  private _popsicle?: Popsicle;
 
   constructor({ id, name, product, cost, price, barcode }: IProduct) {
     super();
@@ -59,6 +61,10 @@ export default class Product extends Entity implements ProductInterface {
     return null;
   }
 
+  get popsicle() {
+    return this._popsicle;
+  }
+
   changeCost(cost: number) {
     this._cost = cost;
   }
@@ -73,5 +79,16 @@ export default class Product extends Entity implements ProductInterface {
 
   validate() {
     ProductValidatorFactory.create().validate(this);
+  }
+
+  set popsicle(popsicle: Popsicle) {
+    if (this._product === "popsicle") {
+      this._popsicle = popsicle;
+    } else {
+      this.notification.addError({
+        message: "Product is not defined",
+        context: "product",
+      });
+    }
   }
 }

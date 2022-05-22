@@ -9,9 +9,9 @@ describe("Unit test for Product Factory", () => {
       price: 2.89,
       barcode: BigInt(1049823049),
     });
-    expect(popsicle.product.product).toBe("popsicle");
-    expect(popsicle.product.name).toBe("Picolé de Limão - Especial");
-    expect(popsicle.popsicle.taste).toEqual("Limão");
+    expect(popsicle.Product.product).toBe("popsicle");
+    expect(popsicle.Product.name).toBe("Picolé de Limão - Especial");
+    expect(popsicle.taste).toEqual("Limão");
   });
 
   it("should throw error when taste is empty", () => {

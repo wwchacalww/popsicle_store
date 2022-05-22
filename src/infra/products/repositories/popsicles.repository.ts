@@ -1,4 +1,5 @@
 import Popsicle from "@domains/products/entities/popsicle";
+import ProductFactory from "@domains/products/factories/product.factory";
 import PopsiclesRepositoryInterface from "@domains/products/repositories/popsicles.repository.interface";
 import { prisma } from "@infra/database/prisma.client";
 
@@ -6,7 +7,7 @@ export default class PopsiclesRepository
   implements PopsiclesRepositoryInterface
 {
   async create(popsicle: Popsicle): Promise<void> {
-    const { id, taste, category, cost, price, barcode, product_id } = popsicle;
+    const { id, taste, category, cost, price, barcode } = popsicle;
     await prisma.popsicles.create({
       data: {
         id,
@@ -15,7 +16,7 @@ export default class PopsiclesRepository
         category,
         price,
         barcode,
-        productsId: product_id,
+        productsId: popsicle.Product.id,
       },
     });
   }
@@ -41,32 +42,48 @@ export default class PopsiclesRepository
       where: {
         id,
       },
+      include: {
+        product: true,
+      },
     });
-    const { taste, category, cost, price, productsId, barcode } = popsicleFound;
-    return new Popsicle({
-      id,
+    const { taste, category, cost, price, barcode, product } = popsicleFound;
+
+    return ProductFactory.createPopsicle({
       taste,
       category,
       cost,
       price,
-      product_id: productsId,
       barcode,
+      product_id: product.id,
+      popsicle_id: id,
     });
   }
   async findAll(): Promise<Popsicle[]> {
     const popscicles = await prisma.popsicles.findMany();
     return popscicles.map((popsicle) => {
-      const { id, taste, category, cost, price, productsId, barcode } =
+      const { id, taste, category, cost, price, barcode, productsId } =
         popsicle;
-      return new Popsicle({
-        id,
+      return ProductFactory.createPopsicle({
         taste,
         category,
         cost,
         price,
-        product_id: productsId,
         barcode,
+        product_id: productsId,
+        popsicle_id: id,
       });
+    });
+  }
+
+  async delete(id: string): Promise<void> {
+    const product = await prisma.popsicles.delete({
+      where: { id },
+      select: {
+        productsId: true,
+      },
+    });
+    await prisma.products.delete({
+      where: { id: product.productsId },
     });
   }
 }
