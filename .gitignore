@@ -1,4 +1,4 @@
 node_modules
 dist
+prisma/test.db
 .env
-test.db
