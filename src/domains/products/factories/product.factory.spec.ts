@@ -7,7 +7,19 @@ describe("Unit test for Product Factory", () => {
       category: "Especial",
       cost: 1.25,
       price: 2.89,
-      barcode: BigInt(1049823049),
+      barcode: "1049823049",
+    });
+    expect(popsicle.Product.product).toBe("popsicle");
+    expect(popsicle.Product.name).toBe("Picolé de Limão - Especial");
+    expect(popsicle.taste).toEqual("Limão");
+  });
+
+  it("should create a popsicle with Product Factory with barcode empty", () => {
+    const popsicle = ProductFactory.createPopsicle({
+      taste: "Limão",
+      category: "Especial",
+      cost: 1.25,
+      price: 2.89,
     });
     expect(popsicle.Product.product).toBe("popsicle");
     expect(popsicle.Product.name).toBe("Picolé de Limão - Especial");
@@ -21,7 +33,7 @@ describe("Unit test for Product Factory", () => {
         category: "Especial",
         cost: 1.25,
         price: 2.89,
-        barcode: BigInt(1049823049),
+        barcode: "1049823049",
       });
     }).toThrowError("popsicle: Taste is required");
   });
@@ -33,7 +45,7 @@ describe("Unit test for Product Factory", () => {
         category: "Especial",
         cost: -1.25,
         price: 2.89,
-        barcode: BigInt(1049823049),
+        barcode: "1049823049",
       });
     }).toThrowError("product: Cost must be greater than zero");
   });
@@ -45,7 +57,7 @@ describe("Unit test for Product Factory", () => {
         category: "Especial",
         cost: 1.25,
         price: -2.89,
-        barcode: BigInt(1049823049),
+        barcode: "1049823049",
       });
     }).toThrowError("product: Price must be greater than zero");
   });

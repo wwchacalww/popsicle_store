@@ -21,6 +21,7 @@ export default class PopsicleYupValidator
               product: yup.string().required(),
               price: yup.number(),
               cost: yup.number(),
+              barcode: yup.string().nullable(),
             })
             .required("Product is required"),
         })
@@ -31,6 +32,7 @@ export default class PopsicleYupValidator
             cost: entity.cost,
             price: entity.price,
             product: entity.Product,
+            barcode: entity.barcode,
           },
           {
             abortEarly: false,

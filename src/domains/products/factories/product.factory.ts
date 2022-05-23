@@ -8,7 +8,7 @@ interface InputPopsicleProductCreate {
   category: string;
   cost: number;
   price: number;
-  barcode?: bigint;
+  barcode?: string;
 }
 
 export default class ProductFactory {
@@ -21,7 +21,7 @@ export default class ProductFactory {
       product: "popsicle",
       cost,
       price,
-      barcode,
+      barcode: barcode || null,
     });
     return new Popsicle({
       id: popsicle_id,
@@ -30,7 +30,7 @@ export default class ProductFactory {
       cost,
       price,
       product,
-      barcode,
+      barcode: barcode || null,
     });
   }
 }

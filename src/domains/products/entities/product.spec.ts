@@ -8,7 +8,7 @@ describe("Unit test for Product", () => {
       product: "popsicle",
       cost: 1.5,
       price: 3.5,
-      barcode: 23409834
+      barcode: "23409834",
     });
     expect(product.product).toBe("popsicle");
     expect(product.name).toBe("Picolé sabor Manga");
@@ -33,9 +33,9 @@ describe("Unit test for Product", () => {
       price: 3.5,
     });
     expect(product.cost).toBe(1.5);
-    expect(product.price).toBe(3.50);
-    product.changeBarcode(456789);
-    expect(product.barcode).toBe(456789);
+    expect(product.price).toBe(3.5);
+    product.changeBarcode("456789");
+    expect(product.barcode).toBe("456789");
     product.changeCost(1.2);
     expect(product.cost).toBe(1.2);
     product.changePrice(2.25);
@@ -94,6 +94,8 @@ describe("Unit test for Product", () => {
         cost: -1.5,
         price: -3.5,
       });
-    }).toThrowError("product: Name is required,product: Product is required,product: Cost must be greater than zero,product: Price must be greater than zero");
+    }).toThrowError(
+      "product: Name is required,product: Product is required,product: Cost must be greater than zero,product: Price must be greater than zero"
+    );
   });
 });

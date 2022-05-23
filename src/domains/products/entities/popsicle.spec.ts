@@ -8,7 +8,7 @@ describe("Unit test for Popsicle", () => {
       product: "popsicle",
       cost: 0.8,
       price: 3.14,
-      barcode: BigInt(12313),
+      barcode: "12313",
     });
     const popsicle = new Popsicle({
       taste: "Manga",
@@ -16,7 +16,7 @@ describe("Unit test for Popsicle", () => {
       cost: 0.8,
       price: 3.5,
       product,
-      barcode: BigInt(12313),
+      barcode: "12313",
     });
     product.popsicle = popsicle;
     expect(popsicle.taste).toBe("Manga");
@@ -50,7 +50,7 @@ describe("Unit test for Popsicle", () => {
       product: "popsicle",
       cost: 0.8,
       price: 3.14,
-      barcode: BigInt(12313),
+      barcode: "12313",
     });
     const popsicle = new Popsicle({
       taste: "Manga",
@@ -58,13 +58,13 @@ describe("Unit test for Popsicle", () => {
       cost: 0.8,
       price: 3.14,
       product,
-      barcode: BigInt(12313),
+      barcode: "12313",
     });
     product.popsicle = popsicle;
     expect(popsicle.cost).toBe(0.8);
     expect(popsicle.price).toBe(3.14);
-    popsicle.changeBarcode(BigInt(456789));
-    expect(popsicle.barcode).toBe(BigInt(456789));
+    popsicle.changeBarcode("456789");
+    expect(popsicle.barcode).toBe("456789");
     popsicle.changeCost(1.2);
     expect(popsicle.cost).toBe(1.2);
     popsicle.changePrice(2.25);
@@ -78,7 +78,7 @@ describe("Unit test for Popsicle", () => {
         product: "popsicle",
         cost: 0.8,
         price: 3.14,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
       new Popsicle({
         taste: "",
@@ -86,7 +86,7 @@ describe("Unit test for Popsicle", () => {
         cost: 0.8,
         price: 3.5,
         product,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
     }).toThrowError("popsicle: Taste is required");
   });
@@ -98,7 +98,7 @@ describe("Unit test for Popsicle", () => {
         product: "popsicle",
         cost: 0.8,
         price: 3.14,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
       new Popsicle({
         taste: "Manga",
@@ -106,7 +106,7 @@ describe("Unit test for Popsicle", () => {
         cost: 0.8,
         price: 3.5,
         product,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
     }).toThrowError("popsicle: Category is required");
   });
@@ -118,7 +118,7 @@ describe("Unit test for Popsicle", () => {
         product: "popsicle",
         cost: 0.8,
         price: 3.14,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
       new Popsicle({
         taste: "Manga",
@@ -126,7 +126,7 @@ describe("Unit test for Popsicle", () => {
         cost: -0.8,
         price: 3.5,
         product,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
     }).toThrowError("popsicle: Cost must be greater than zero");
   });
@@ -138,7 +138,7 @@ describe("Unit test for Popsicle", () => {
         product: "popsicle",
         cost: 0.8,
         price: 3.14,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
       new Popsicle({
         taste: "Manga",
@@ -146,7 +146,7 @@ describe("Unit test for Popsicle", () => {
         cost: 0.8,
         price: -3.5,
         product,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
     }).toThrowError("popsicle: Price must be greater than zero");
   });
@@ -159,7 +159,7 @@ describe("Unit test for Popsicle", () => {
         cost: 0.8,
         price: 3.5,
         product: {} as Product,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
     }).toThrowError(
       "popsicle: product.id is a required field,popsicle: product.name is a required field,popsicle: product.product is a required field"
@@ -173,7 +173,7 @@ describe("Unit test for Popsicle", () => {
         product: "popsicle",
         cost: 0.8,
         price: 3.14,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
       new Popsicle({
         taste: "",
@@ -181,7 +181,7 @@ describe("Unit test for Popsicle", () => {
         cost: -0.8,
         price: -3.5,
         product,
-        barcode: BigInt(12313),
+        barcode: "12313",
       });
     }).toThrowError(
       "popsicle: Taste is required,popsicle: Category is required,popsicle: Cost must be greater than zero,popsicle: Price must be greater than zero"

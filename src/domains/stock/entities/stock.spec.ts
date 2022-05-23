@@ -9,7 +9,7 @@ describe("Unit test for Stock", () => {
       category: "Comum",
       cost: 1.23,
       price: 3,
-      barcode: BigInt(1802834),
+      barcode: "1802834",
     });
     const product = new Product({
       id: popsicle.Product.id,
@@ -27,7 +27,7 @@ describe("Unit test for Stock", () => {
     expect(stock.subtotalCost).toEqual(4.92);
     expect(stock.subtotalPrice).toEqual(12);
     expect(stock.show).toStrictEqual({
-      barcode: BigInt(1802834),
+      barcode: "1802834",
       description: "Picolé de Uva - Comum",
       unit_price: new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -47,7 +47,7 @@ describe("Unit test for Stock", () => {
       category: "Comum",
       cost: 1.23,
       price: 3,
-      barcode: BigInt(1802834),
+      barcode: "1802834",
     });
     const product = new Product({
       id: popsicle.Product.id,
@@ -65,7 +65,7 @@ describe("Unit test for Stock", () => {
     expect(stock.subtotalCost).toEqual(-4.92);
     expect(stock.subtotalPrice).toEqual(-12);
     expect(stock.show).toStrictEqual({
-      barcode: BigInt(1802834),
+      barcode: "1802834",
       description: "Picolé de Uva - Comum",
       unit_price: new Intl.NumberFormat("pt-BR", {
         style: "currency",
@@ -92,12 +92,12 @@ describe("Unit test for Stock", () => {
       name: popsicle.Product.name,
       cost: popsicle.Product.cost,
       price: popsicle.Product.price,
-      barcode: popsicle.Product.barcode,
     });
     const stock = new Stock({
       product,
       quantity: 4,
     });
+    console.log(stock.show);
     expect(stock.product.name).toEqual("Picolé de Uva - Comum");
     expect(stock.subtotalCost).toEqual(4.92);
     expect(stock.subtotalPrice).toEqual(12);

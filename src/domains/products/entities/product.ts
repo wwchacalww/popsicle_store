@@ -4,6 +4,7 @@ import ProductInterface from "./product.interface";
 import ProductValidatorFactory from "../factories/product.validator.factory";
 import { v4 } from "uuid";
 import Popsicle from "./popsicle";
+import BarcodeType from "@domains/@shared/value-object/barcode.vo";
 
 interface IProduct {
   id?: string;
@@ -11,7 +12,7 @@ interface IProduct {
   product: string;
   cost: number;
   price: number;
-  barcode?: bigint;
+  barcode?: string;
 }
 
 export default class Product extends Entity implements ProductInterface {
@@ -19,7 +20,7 @@ export default class Product extends Entity implements ProductInterface {
   private _product: string;
   private _cost: number;
   private _price: number;
-  private _barcode?: bigint;
+  private _barcode?: BarcodeType;
   private _popsicle?: Popsicle;
 
   constructor({ id, name, product, cost, price, barcode }: IProduct) {
@@ -29,7 +30,7 @@ export default class Product extends Entity implements ProductInterface {
     this._product = product;
     this._cost = cost;
     this._price = price;
-    this._barcode = barcode;
+    this._barcode = barcode ? new BarcodeType(barcode) : null;
     this.validate();
     if (this.notification.hasErrors()) {
       throw new NotificationError(this.notification.getErrors());
@@ -54,9 +55,9 @@ export default class Product extends Entity implements ProductInterface {
   get price(): number {
     return this._price;
   }
-  get barcode(): bigint | null {
+  get barcode(): string | null {
     if (this._barcode) {
-      return this._barcode;
+      return this._barcode.value;
     }
     return null;
   }
@@ -73,8 +74,8 @@ export default class Product extends Entity implements ProductInterface {
     this._price = price;
   }
 
-  changeBarcode(barcode: bigint) {
-    this._barcode = barcode;
+  changeBarcode(barcode: string) {
+    this._barcode = new BarcodeType(barcode);
   }
 
   validate() {

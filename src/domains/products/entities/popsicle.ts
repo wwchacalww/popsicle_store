@@ -3,6 +3,7 @@ import Entity from "../../@shared/entity/entity.abstract";
 import PopsicleValidatorFactory from "../factories/popsicle.validator.factory";
 import ProductInterface from "./product.interface";
 import Product from "./product";
+import BarcodeType from "@domains/@shared/value-object/barcode.vo";
 
 interface IPopsicle {
   id?: string;
@@ -10,7 +11,7 @@ interface IPopsicle {
   category: string;
   cost: number;
   price: number;
-  barcode?: bigint;
+  barcode?: string;
   product: Product;
 }
 
@@ -19,7 +20,7 @@ export default class Popsicle extends Entity implements ProductInterface {
   private _category: string;
   private _cost: number;
   private _price: number;
-  private _barcode?: bigint;
+  private _barcode?: BarcodeType;
   private _product: Product;
 
   constructor({
@@ -36,7 +37,7 @@ export default class Popsicle extends Entity implements ProductInterface {
     this._category = category;
     this._cost = cost;
     this._price = price;
-    this._barcode = barcode;
+    this._barcode = barcode ? new BarcodeType(barcode) : null;
     this._product = product;
     this.validate();
     if (this.notification.hasErrors()) {
@@ -59,9 +60,9 @@ export default class Popsicle extends Entity implements ProductInterface {
   get Product(): Product {
     return this._product;
   }
-  get barcode(): bigint | null {
+  get barcode(): string | null {
     if (this._barcode) {
-      return this._barcode;
+      return this._barcode.value;
     }
     return null;
   }
@@ -74,8 +75,8 @@ export default class Popsicle extends Entity implements ProductInterface {
     this._price = price;
   }
 
-  changeBarcode(barcode: bigint) {
-    this._barcode = barcode;
+  changeBarcode(barcode: string) {
+    this._barcode = new BarcodeType(barcode);
   }
 
   validate() {
