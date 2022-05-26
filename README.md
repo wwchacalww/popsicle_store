@@ -1,5 +1,5 @@
 ## Próximos passos
 
-- Tipagem do Barcode
-- Implentação dos tests com prisma
-- suber o projeto para o github
+[] Criar um container para desenvolvimento
+[] Configurar o eslint
+[] Configurar o prettier
