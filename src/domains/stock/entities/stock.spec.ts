@@ -97,7 +97,6 @@ describe("Unit test for Stock", () => {
       product,
       quantity: 4,
     });
-    console.log(stock.show);
     expect(stock.product.name).toEqual("Picolé de Uva - Comum");
     expect(stock.subtotalCost).toEqual(4.92);
     expect(stock.subtotalPrice).toEqual(12);

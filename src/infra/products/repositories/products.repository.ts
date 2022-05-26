@@ -1,3 +1,4 @@
+import BarcodeType from "@domains/@shared/value-object/barcode.vo";
 import Product from "@domains/products/entities/product";
 import ProductsRepositoryInterface from "@domains/products/repositories/products.repository.interface";
 import { prisma } from "@infra/database/prisma.client";

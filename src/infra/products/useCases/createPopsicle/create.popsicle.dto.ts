@@ -3,7 +3,7 @@ export interface InputCreatePopsicleDTO {
   category: string;
   cost: number;
   price: number;
-  barcode: bigint;
+  barcode: string;
 }
 
 export interface OutputCreatePopsicleDTO {
@@ -12,7 +12,7 @@ export interface OutputCreatePopsicleDTO {
   category: string;
   cost: number;
   price: number;
-  barcode: bigint;
+  barcode: string;
   Product: {
     id: string;
     name: string;

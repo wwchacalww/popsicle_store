@@ -22,7 +22,7 @@ model Products {
   product String
   cost    Float
   price   Float
-  barcode BigInt?
+  barcode String?
 
   Popsicles Popsicles[]
   @@map("products")
@@ -34,7 +34,7 @@ model Popsicles {
   category String
   cost     Float
   price    Float
-  barcode  BigInt?
+  barcode  String?
   product  Products @relation(fields: [productsId], references: [id])
 
   productsId String
