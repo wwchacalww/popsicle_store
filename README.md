@@ -1,5 +1,5 @@
 ## Próximos passos
 
-[] Criar um container para desenvolvimento
-[] Configurar o eslint
-[] Configurar o prettier
+[ ] Criar um container para desenvolvimento<br>
+[ ] Configurar o eslint<br>
+[ ] Configurar o prettier<br>
